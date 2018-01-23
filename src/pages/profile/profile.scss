@@ -1,0 +1,103 @@
+page-profile {
+    .scroll-content {
+        padding: 0px!important;
+    }
+    #button-ios {
+        font-size: 1.6rem;
+    }
+    #button-md {
+        margin: 0px !important;
+        font-size: 8.6rem;
+        min-height: 15.6rem;
+    }
+    /* .button-inner {
+        height: 80%!important;
+      }*/
+    .button-ios {
+        height: 2.2em!important;
+    }
+    .button-md {
+        height: 2.2em!important;
+    }
+    .pad1 {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    .list-ios>.item-block:first-child {
+        border-top: 0px !important;
+    }
+    .header-md::after,
+    .tabs-md[tabsPlacement="top"]>.tabbar::after,
+    .footer-md::before,
+    .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+        height: 0px!important;
+    }
+    .header-ios::after,
+    .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+    .footer-ios::before,
+    .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+        height: 0px!important;
+    }
+    .item-ios {
+        padding-left: 0px!important;
+        color: #444444;
+    }
+    .item-md {
+        padding-left: 0px!important;
+        color: #444444;
+    }
+    .item-ios.item-label-stacked .text-input,
+    .item-ios.item-label-floating .text-input {
+        color: #444444;
+    }
+    .item-md.item-label-stacked .text-input,
+    .item-md.item-label-floating .text-input {
+        color: #444444;
+    }
+    .button-inner1 {
+        color: #444444!important;
+    }
+    .padtop {
+        padding-top: 0%!important;
+    }
+    .padbottom {
+        padding-bottom: 0%!important;
+    }
+    ion-col {
+        padding-bottom: 0%!important;
+        padding-top: 0%!important;
+    }
+    .imground {
+        max-height: 80%;
+        border-radius: 300px;
+    }
+    .list-md,
+    .list-ios {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+    .item-ios ion-avatar ion-img,
+    .item-ios ion-avatar img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+    page-profile .item-ios ion-avatar ion-img,
+    page-profile .item-ios ion-avatar img {
+        border-radius: 50%;
+        width: 150px!important;
+        height: 150px!important;
+        display: block;
+        margin: 0 auto;
+    }
+    .list-ios[inset] {
+        margin: 0px;
+    }
+    .toolbar-background-ios {
+        background: #fff;
+    }
+}

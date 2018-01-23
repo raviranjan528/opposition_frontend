@@ -1,0 +1,34 @@
+<ion-content padding class="transparent-header">
+    <form (ngSubmit)="OnLogin(f)" #f="ngForm">
+        <!-- <ion-header>
+    <ion-navbar>
+    </ion-navbar>
+  </ion-header> -->
+        <img class="logo" src="assets/imgs/logoimages.png" />
+        <div padding>
+            <ion-item>
+                <ion-input type="email" placeholder="Email" name="email" id="email" [(ngModel)]="users.email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="password" placeholder="Password" name="password" id="password" [(ngModel)]="users.password"></ion-input>
+            </ion-item>
+            <button ion-button block outline type="submit" color="light" class="login-button">Login</button>
+            <a (click)="forgetpassword()">
+      Forgot Password?
+    </a>
+        </div>
+        <div class="strike">
+            <span>OR</span>
+        </div>
+    </form>
+    <button ion-button block clear (click)="OnFacebook()" color="light" class="login-button"><ion-icon name="logo-facebook"></ion-icon> Login with Facebook</button>
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar class="footer">
+        <div (click)="signup()">
+            <span>Don't have an account? <strong>
+        Sign up here</strong>.</span>
+        </div>
+    </ion-toolbar>
+</ion-footer>

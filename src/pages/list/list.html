@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>User List</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let data of userList">
+            <ion-avatar item-start>
+                <img *ngIf="data.user_image" src="{{data.user_image}}">
+                <img *ngIf="!data.user_image" src="assets/imgs/man.png">
+            </ion-avatar>
+            <button *ngIf="checkfunction(data._id) == false" ion-button round class="followButton" (click)="followUser(data._id)">Follow</button>
+            <button *ngIf="checkfunction(data._id) == true" ion-button round class="followButton" (click)="unfollowUser(data._id)">UnFollow</button>
+            <h2>{{data.firstname}} {{data.lastname}}</h2>
+            <h3>{{data.email}}</h3>
+            <button ion-button small  (click)="userprofilePage(data._id)">View Profile</button>
+        </ion-item>
+    </ion-list>
+</ion-content>

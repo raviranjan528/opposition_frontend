@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="homeSection">
+    <ion-list>
+        <form (ngSubmit)="OnPostMessage(f)" #f="ngForm">
+            <ion-item>
+                <ion-label stacked>Whats on your mind</ion-label>
+                <ion-textarea name="message" id="message" [(ngModel)]="users.message"></ion-textarea>
+            </ion-item>
+            <ion-avatar class="imageStyle" style="text-align:center!important">
+                <img *ngIf="!url1" src="assets/imgs/scenery.jpg">
+                <img *ngIf="url1" src="{{url1}}">
+                <input type="file" ng2FileSelect [uploader]="uploader" (change)="readUrl1($event)" />
+
+            </ion-avatar>
+            <button ion-button small class="postButton" type="submit">Post</button>
+        </form>
+    </ion-list>
+
+
+
+    <ion-card *ngFor="let data of postData">
+
+        <ion-item>
+            <ion-avatar item-start>
+                <span *ngIf="data.user">
+                    <img *ngIf="data.user.user_image" src="{{data.user.user_image}}">
+                    <img  *ngIf="!data.user.user_image" src="assets/imgs/man.png">
+                   </span>
+            </ion-avatar>
+            <span *ngIf="data.user">
+            <h2 *ngIf="data.user.firstname">{{data.user.firstname}} &nbsp;{{data.user.lastname}}</h2>
+            <h2 *ngIf="!data.user.firstname">No User</h2>
+           </span>
+            <p>{{data.createdAt | amTimeAgo}}</p>
+        </ion-item>
+
+        <img *ngIf="!data.imageUrl" src="assets/imgs/scenery.jpg">
+        <img *ngIf="data.imageUrl" src="{{data.imageUrl}}">
+
+
+        <ion-card-content>
+            <p>{{data.message}}</p>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+         <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{data.rating}}</div>
+        </button>
+        <button ion-button small class="postButton" (click)="ratingPage(data._id)">Rate It</button>
+            </ion-col>
+            <ion-col>
+         <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{data.comments.length}}</div>
+        </button>
+        <button ion-button small class="postButton" (click)="commentPage(data._id)">Comment</button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
+
+</ion-content>

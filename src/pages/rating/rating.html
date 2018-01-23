@@ -1,0 +1,73 @@
+<!--
+  Generated template for the RatingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>rating</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="homeSection">
+	<ion-item>
+                 <button ion-button   color="light" class="login-button" (click)="dismiss()">Close</button>
+     </ion-item>
+    <ion-card>
+
+        <ion-item>
+            <ion-avatar item-start>
+                <span *ngIf="postData.user">
+                    <img *ngIf="postData.user.user_image" src="{{postData.user.user_image}}">
+                    <img  *ngIf="!postData.user.user_image" src="assets/imgs/man.png">
+                   </span>
+            </ion-avatar>
+            <span *ngIf="postData.user">
+            <h2 *ngIf="postData.user.firstname">{{postData.user.firstname}} &nbsp;{{postData.user.lastname}}</h2>
+            <h2 *ngIf="!postData.user.firstname">No User</h2>
+           </span>
+            <p>{{postData.createdAt}}</p>
+        </ion-item>
+
+        <img *ngIf="!postData.imageUrl" src="assets/imgs/scenery.jpg">
+        <img *ngIf="postData.imageUrl" src="{{postData.imageUrl}}">
+
+
+        <ion-card-content>
+            <p>{{postData.message}}</p>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+         <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{postData.rating}}</div>
+        </button>
+            </ion-col>
+            <ion-col>
+         <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div *ngIf="postData.comments">{{postData.comments.length}}</div>
+        </button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
+
+ <ion-item>
+      <ion-range min="-100" max="100" pin="true" [(ngModel)]="post.rating"  (ngModelChange)="onRatingChange($event)" color="secondary">
+        <ion-icon range-left small name="rating"></ion-icon>
+        <ion-icon range-right name="rating"></ion-icon>
+      </ion-range>
+    </ion-item>
+     <ion-item>
+                 <button ion-button  (click)="onRating()" color="light" class="login-button">Rating</button>
+            </ion-item>
+
+        
+
+</ion-content>
