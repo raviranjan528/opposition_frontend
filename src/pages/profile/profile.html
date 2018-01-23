@@ -1,23 +1,28 @@
 <ion-header>
-    <ion-navbar hideBackButton="true">
+    <ion-navbar hideBackButton="true" color="header">
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Profile Details</ion-title>
+        <ion-title>Profile</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
     <form (ngSubmit)="OnProfileSave(f)" #f="ngForm">
-        <ion-toolbar color="dealerblue" style="min-height: 74px;text-align: center;">
-            <ion-list no-lines>
-                <ion-item>
+        <ion-toolbar  class="p0" style="min-height: 74px;text-align: center;">
+            <ion-list no-lines class="p0 m0">
+                <ion-item class="p8" color="bgcolor">
                     <ion-avatar style="text-align:center!important">
                         <img *ngIf="!url1" src="https://s-media-cache-ak0.pinimg.com/236x/26/44/4f/26444f66c8cfe2798e892a669e4df8cf--avatar.jpg">
                         <img *ngIf="url1" src="{{url1}}">
-                        <input type="file" ng2FileSelect [uploader]="uploader" (change)="readUrl1($event)" />
-
+                        
+                        <div id="hide" class="col-lg-8 col-xs-8">
+                            <label class="hand-cursor">
+                                <input type="file" ng2FileSelect [uploader]="uploader" (change)="readUrl1($event)"/>
+                                <ion-icon name="camera" class="icon_size"></ion-icon>
+                            </label>
+                        </div>
                     </ion-avatar>
                 </ion-item>
             </ion-list>
@@ -26,38 +31,37 @@
         <ion-list inset>
 
             <ion-item>
-                <ion-label floating color="primary">Name</ion-label>
+                <ion-label floating color="labelcolor">Name</ion-label>
                 <ion-input type="text" name="firstname" id="firstname" [(ngModel)]="profileData.firstname"></ion-input>
             </ion-item>
             <ion-item>
+                <ion-label floating color="labelcolor">Last name</ion-label>
                 <ion-input type="text" name="lastname" id="lastname" [(ngModel)]="profileData.lastname"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label floating color="primary">Email</ion-label>
+                <ion-label floating color="labelcolor">Email</ion-label>
                 <ion-input [disabled]="profileData.email" type="email" name="email" id="email" [(ngModel)]="profileData.email"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label floating color="primary">Phone</ion-label>
+                <ion-label floating color="labelcolor">Phone</ion-label>
                 <ion-input type="number" name="phone" id="phone" [(ngModel)]="profileData.phone"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label stacked color="primary">
-                    DOB
-                </ion-label>
+                <ion-label floating color="labelcolor">Date of birth</ion-label>
                 <ion-datetime class="button-inner1" displayFormat="DD-MMMM-YYYY" pickerFormat="DD-MMMM-YYYY" name="dob" id="dob" [(ngModel)]="profileData.dob"></ion-datetime>
             </ion-item>
             <ion-item>
-                <ion-label floating color="primary">Gender</ion-label>
+                <ion-label floating color="labelcolor">Gender</ion-label>
                 <ion-select name="gender" id="gender" [(ngModel)]="profileData.gender">
                     <ion-option value="f">Female</ion-option>
                     <ion-option value="m">Male</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-label floating color="primary">Marital Status</ion-label>
+                <ion-label floating color="labelcolor">Marital Status</ion-label>
                 <ion-select name="maritalStatus" id="maritalStatus" [(ngModel)]="profileData.maritalStatus">
                     <ion-option value="married">Married</ion-option>
                     <ion-option value="single">Single</ion-option>
@@ -65,59 +69,56 @@
                     <ion-option value="widowed">Widowed </ion-option>
                 </ion-select>
             </ion-item>
-            <ion-list *ngIf="profileData.lastEducation">
-                <ion-list-header floating color="primary">Last Education
-                </ion-list-header>
+            <ion-list *ngIf="profileData.lastEducation" class="p0">
+                <ion-list-header class="mt16" floating color="labelcolor">Last Education</ion-list-header>
                 <ion-item>
-                    <ion-label floating color="primary">Degree</ion-label>
+                    <ion-label floating color="labelcolor">Degree</ion-label>
                     <ion-input type="text" name="degree" id="degree" [(ngModel)]="profileData.lastEducation.degree"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">College</ion-label>
+                    <ion-label floating color="labelcolor">College</ion-label>
                     <ion-input type="text" name="college" id="college" [(ngModel)]="profileData.lastEducation.college"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">Year</ion-label>
+                    <ion-label floating color="labelcolor">Year</ion-label>
                     <ion-datetime class="button-inner1" displayFormat="DD-MMMM-YYYY" pickerFormat="DD-MMMM-YYYY" name="eduYear" id="eduYear" [(ngModel)]="profileData.lastEducation.eduYear"></ion-datetime>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">Major's</ion-label>
+                    <ion-label floating color="labelcolor">Major's</ion-label>
                     <ion-input type="text" name="major" id="major" [(ngModel)]="profileData.lastEducation.major"></ion-input>
                 </ion-item>
             </ion-list>
 
-            <ion-list *ngIf="profileData.currentJob">
-                <ion-list-header floating color="primary">Current Job
-                </ion-list-header>
+            <ion-list *ngIf="profileData.currentJob" class="p0">
+                <ion-list-header  floating color="labelcolor">Current Job</ion-list-header>
                 <ion-item>
-                    <ion-label floating color="primary">Comapny</ion-label>
+                    <ion-label floating color="labelcolor">Company</ion-label>
                     <ion-input type="text" name="company" id="company" [(ngModel)]="profileData.currentJob.company"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">Department</ion-label>
+                    <ion-label floating color="labelcolor">Department</ion-label>
                     <ion-input type="text" name="department" id="department" [(ngModel)]="profileData.currentJob.department"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">Since Working</ion-label>
+                    <ion-label floating color="labelcolor">Since Working</ion-label>
                     <ion-datetime class="button-inner1" displayFormat="DD-MMMM-YYYY" pickerFormat="DD-MMMM-YYYY" name="working" id="working" [(ngModel)]="profileData.currentJob.working"></ion-datetime>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating color="primary">Position</ion-label>
+                    <ion-label floating color="labelcolor">Position</ion-label>
                     <ion-input type="text" name="position" id="position" [(ngModel)]="profileData.currentJob.position"></ion-input>
                 </ion-item>
             </ion-list>
         </ion-list>
-        <div style="padding: 5%">
-            <div id="button-ios" ion-button color="dealerred" block (click)="password()">Change Password</div>
-
+        <ion-list>
+            <button id="button-ios" type="submit" ion-button color="btncolor" block>Update</button>
             <div>
                 &nbsp;
             </div>
-            <button id="button-ios" type="submit" ion-button color="dealerred" block>UPDATE</button>
+            <button id="button-ios" ion-button color="btncolor" block (click)="onSkip()">Skip</button>
             <div>
                 &nbsp;
             </div>
-            <button id="button-ios" ion-button color="dealerred" block (click)="onSkip()">Skip</button>
-        </div>
+            <div id="button-ios" ion-button color="btncolor" block (click)="password()">Change Password</div>
+        </ion-list>
     </form>
 </ion-content>

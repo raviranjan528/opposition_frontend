@@ -1,9 +1,9 @@
 page-sign-up {
-    $transparent-white: rgba(255, 255, 255, .6);
+    $transparent-white: rgba(111, 111, 111, 0.6);
     // This is just to make the header transparent and button/icon with white color
     .toolbar-content,
     span {
-        color: white;
+        //color: white;
     }
     .toolbar-background,
     ion-navbar,
@@ -31,9 +31,10 @@ page-sign-up {
     }
     // Fullscreen animated rainbow gradient
     ion-content {
-        background: linear-gradient(316deg, #dd00f3, #dd00f3, #e8b71d, #e3e81d, #1de840, #1ddde8, #1ddde8, #12aaeb, #12aaeb);
+        background: linear-gradient(#fff, #fff);
+        //background: linear-gradient(316deg, #dd00f3, #dd00f3, #e8b71d, #e3e81d, #1de840, #1ddde8, #1ddde8, #12aaeb, #12aaeb);
         background-size: 1800% 1800%;
-        animation: rainbow 30s linear infinite;
+        //animation: rainbow 30s linear infinite;
     }
     @keyframes rainbow {
         0% {
@@ -70,7 +71,7 @@ page-sign-up {
         font-size: 0.9em;
     }
      ::-webkit-input-placeholder {
-        color: white !important;
+        //color: white !important;
     }
     .item-inner {
         border-bottom: 0 !important;
@@ -116,6 +117,12 @@ page-sign-up {
         margin-left: 15px;
     }
     a {
-        color: #fff;
+        //color: #fff;
+    }
+    .b1px{
+        border: 1px solid #ededed;
+    }
+    .black-text{
+        color: #333;
     }
 }

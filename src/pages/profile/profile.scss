@@ -100,4 +100,43 @@ page-profile {
     .toolbar-background-ios {
         background: #fff;
     }
+    #hide input[type=file] {
+        display:none;
+        margin:10px;
+    }
+    #hide input[type=file] + label {
+        display:inline-block;
+        margin:20px;
+        padding: 4px 32px;
+        background-color: #FFFFFF;
+        border:solid 1px #666F77;
+        border-radius: 6px;
+        color:#666F77;
+    }
+    #hide input[type=file]:active + label {
+        background-image: none;
+        background-color:#2D6C7A;
+        color:#FFFFFF;
+    }
+    .icon_size{
+        font-size: 35px;
+    }
+    .p0{
+        padding: 0px;
+        .item-inner{
+            padding: 0px!important;
+        }
+        ion-label{
+            margin: 0px;
+        }
+    }
+    .p8{
+        padding: 8px;
+    }
+    .m0{
+        margin: 0px;
+    }
+    .mt16{
+        margin-top: 16px;
+    }
 }

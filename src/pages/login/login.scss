@@ -1,9 +1,9 @@
 page-login {
-    $transparent-white: rgba(255, 255, 255, .6);
+    $transparent-white: rgba(111, 111, 111, 0.6);
     // This is just to make the header transparent and button/icon with white color
     .toolbar-content,
     span {
-        color: white;
+        //color: white;
     }
     .toolbar-background,
     ion-navbar,
@@ -31,9 +31,9 @@ page-login {
     }
     // Fullscreen animated rainbow gradient
     ion-content {
-        background: linear-gradient(#dd00f3, #e8b71d);
+        background: linear-gradient(#fff, #fff);
         background-size: 1800% 1800%;
-        animation: rainbow 30s linear infinite;
+        //animation: rainbow 30s linear infinite;
     }
     @keyframes rainbow {
         0% {
@@ -70,7 +70,7 @@ page-login {
         font-size: 0.9em;
     }
      ::-webkit-input-placeholder {
-        color: white !important;
+        //color: white !important;
     }
     .item-inner {
         border-bottom: 0 !important;
@@ -116,6 +116,12 @@ page-login {
         margin-left: 15px;
     }
     a {
-        color: #fff;
+        //color: #fff;
+    }
+    .b1px{
+        border: 1px solid #ededed;
+    }
+    .black-text{
+        color: #333;
     }
 }
