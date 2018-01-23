@@ -27,7 +27,9 @@ export class MyApp {
     }else {
       this.rootPage = "LoginPage"
     }
-
+    if(localStorage.getItem('role')){
+      this.userRole = localStorage.getItem('role')
+    }
     // used for an example of ngFor and navigation 
     this.pages = [
       { title: 'Home', component: "HomePage" },

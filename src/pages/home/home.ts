@@ -145,7 +145,7 @@ readUrl1(event) {
    profileModal.onDidDismiss(data => {
       this.OnGetMessage();
     })
-         
+         profileModal.present();
  }
 
   commentPage(postId) {
@@ -155,6 +155,7 @@ readUrl1(event) {
       this.OnGetMessage();
          
  })
+   profileModal.present();
  }
 
 }

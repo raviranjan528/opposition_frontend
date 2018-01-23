@@ -156,6 +156,7 @@ export class LoginPage {
                   this.signinService.getProfileData().subscribe(res =>{
                     console.log('res' + JSON.stringify(res))
                           this.navCtrl.push("HomePage");
+                          localStorage.setItem('role',  res.role);
                   this.events.publish('user:created', res, Date.now());
                    {
                       let toast = this.toastCtrl.create({
