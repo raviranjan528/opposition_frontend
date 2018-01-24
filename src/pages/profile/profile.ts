@@ -134,20 +134,7 @@ imageAvilable=0;
       console.log("done");
       localStorage.removeItem('image');
      // this.navCtrl.push(DashboardtabPage);
-     this.Refreshpage();
-                  {
-                      let toast = this.toastCtrl.create({
-                          message: 'Profile Updated Successful!',
-                          duration: 3000,
-                          position: 'bottom'
-                      });
-
-                      toast.onDidDismiss(() => {
-                        console.log('Dismissed toast');
-                      });
-
-                      toast.present();
-                  }
+    this.navCtrl.push("HomePage");
      })
 
     };
@@ -157,20 +144,7 @@ imageAvilable=0;
       loading.dismiss();
       console.log("done");
      // this.navCtrl.push(DashboardtabPage);
-     this.Refreshpage();
-                  {
-                      let toast = this.toastCtrl.create({
-                          message: 'Profile Updated Successful!',
-                          duration: 3000,
-                          position: 'bottom'
-                      });
-
-                      toast.onDidDismiss(() => {
-                        console.log('Dismissed toast');
-                      });
-
-                      toast.present();
-                  }
+ this.navCtrl.push("HomePage");
      })
    }
   }
@@ -201,7 +175,5 @@ imageAvilable=0;
    onSkip(){
      this.navCtrl.push("HomePage")
    }
-   password(){
-    this.navCtrl.push("PasswordPage");
-  }
+
 }

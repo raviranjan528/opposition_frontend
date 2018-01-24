@@ -15,7 +15,7 @@ export class HomePage {
 postData: any;
 username: any;
 url1: any;
-imageAvilable :any= 1;
+imageAvilable :any= 0;
 users: any = {}
 public uploader: CloudinaryUploader = new CloudinaryUploader(
   new CloudinaryOptions({ cloudName: 'dniwyifho', uploadPreset: 'eff7binz' })
@@ -53,7 +53,24 @@ public uploader: CloudinaryUploader = new CloudinaryUploader(
             this.users.publicId = cloudinaryImage.public_id;
             this.homeService.postPostData(this.users)
            .subscribe( (response) => { 
-           
+             console.log('response' + JSON.stringify(response));
+           if(response.flag == 0){
+              let alert = this.alertCtrl.create({
+                          title: 'Post Failed',
+                          subTitle: 'Please Provide Your Name,DOB,Gender,Profile Image First!',
+                          buttons: [
+                              {
+                                text: 'OK',
+                                handler: () => {
+                                 this.navCtrl.push("ProfilePage")
+                                  loading.dismiss();
+                                }
+                              }
+                            ]
+                        });
+                        alert.present();
+           }
+           else{
           this.OnGetMessage();
                {
                   let toast = this.toastCtrl.create({
@@ -70,6 +87,7 @@ public uploader: CloudinaryUploader = new CloudinaryUploader(
               }
               this.users.message = '';
               loading.dismiss();
+            }
         },
              (error) => { 
                loading.dismiss();
@@ -83,25 +101,44 @@ public uploader: CloudinaryUploader = new CloudinaryUploader(
       );
     }
     if(this.imageAvilable === 0){
+      console.log('this.users' + JSON.stringify(this.users));
       this.homeService.postPostData(this.users)
       .subscribe( (response) => { 
-      
-     this.OnGetMessage();
-          {
-             let toast = this.toastCtrl.create({
-                 message: 'Post Successful!',
-                 duration: 3000,
-                 position: 'bottom'
-             });
+        console.log('response' + JSON.stringify(response));
+       if(response.flag == 0){
+              let alert = this.alertCtrl.create({
+                          title: 'Post Failed',
+                          subTitle: 'Please Provide Your Name,DOB,Gender,Profile Image First!',
+                          buttons: [
+                              {
+                                text: 'OK',
+                                handler: () => {
+                                 this.navCtrl.push("ProfilePage");
+                                  loading.dismiss();
+                                }
+                              }
+                            ]
+                        });
+                        alert.present();
+           }
+           else{
+          this.OnGetMessage();
+               {
+                  let toast = this.toastCtrl.create({
+                      message: 'Post Successful!',
+                      duration: 3000,
+                      position: 'bottom'
+                  });
 
-             toast.onDidDismiss(() => {
-               console.log('Dismissed toast');
-             });
+                  toast.onDidDismiss(() => {
+                    console.log('Dismissed toast');
+                  });
 
-             toast.present();
-         }
-         this.users.message = '';
-         loading.dismiss();
+                  toast.present();
+              }
+              this.users.message = '';
+              loading.dismiss();
+            }
    },
         (error) => { 
           loading.dismiss();
@@ -159,3 +196,4 @@ readUrl1(event) {
  }
 
 }
+
