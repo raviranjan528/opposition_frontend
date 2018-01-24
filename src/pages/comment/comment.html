@@ -29,7 +29,7 @@
             <h2 *ngIf="postData.user.firstname">{{postData.user.firstname}} &nbsp;{{postData.user.lastname}}</h2>
             <h2 *ngIf="!postData.user.firstname">No User</h2>
             </span>
-            <p>{{postData.createdAt}}</p>
+             <p>{{postData.createdAt | amTimeAgo}}</p>
         </ion-item>
 
         <img *ngIf="!postData.imageUrl" src="assets/imgs/scenery.jpg">
@@ -61,7 +61,7 @@
         <ion-list>
             <ion-item *ngFor="let data of postData.comments" class="bb1">
                 <h2>{{data.message}}</h2>
-                <p>{{postData.createdAt}}</p>
+                <p>{{postData.createdAt | amTimeAgo}}</p>
             </ion-item>
         </ion-list>
     </ion-card>

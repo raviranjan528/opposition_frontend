@@ -44,7 +44,7 @@ post = {
         });
        loading.present();
     this.commentService.getPostData(this.postId).subscribe(res =>{
-          
+          console.log('res' + JSON.stringify(res))
              		if(res.flag == 0){
               let alert = this.alertCtrl.create({
                           title: 'Comment Failed',
@@ -93,6 +93,7 @@ post = {
    	loading.present();
    	this.post.postID = this.postId
    	this.commentService.postCommentData(this.post).subscribe(res =>{
+   		      console.log('res' + JSON.stringify(res));
    		if(res.flag == 0){
               let alert = this.alertCtrl.create({
                           title: 'Comment Failed',

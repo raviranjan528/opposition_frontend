@@ -1,5 +1,5 @@
 
 export class ConstService {
 	
-    url= 'https://opposition.herokuapp.com/'  //''http://192.168.0.4:3000/' //
+    url= 'http://192.168.0.4:3000/' //'https://opposition.herokuapp.com/'  //'
 }
