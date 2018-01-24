@@ -63,19 +63,6 @@ post = {
            }
            else{
            this.postData =  res;
-               {
-                  let toast = this.toastCtrl.create({
-                      message: 'Comment Successful Added!',
-                      duration: 3000,
-                      position: 'bottom'
-                  });
-
-                  toast.onDidDismiss(() => {
-                    console.log('Dismissed toast');
-                  });
-
-                  toast.present();
-              }
               this.post.message = '';
               loading.dismiss();
             }

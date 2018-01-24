@@ -70,9 +70,9 @@
     <ion-toolbar position="bottom">
         <form (ngSubmit)="OnComment(f)" #f="ngForm" class="row">
             <ion-item>
-                <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message"></ion-input>
+                <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message" required></ion-input>
                 
-                <button class="commentbtn" type="submit" item-end ion-button color="danger" icon-only>
+                <button class="commentbtn" [disabled]="!f.valid" type="submit" item-end ion-button color="danger" icon-only>
                     <ion-icon class="f35" name='send' is-active="false"></ion-icon>
                 </button>
                 

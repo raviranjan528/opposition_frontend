@@ -13,7 +13,7 @@
         <ion-list>
             <form (ngSubmit)="OnPostMessage(f)" #f="ngForm">
                 <ion-item>
-                    <ion-textarea name="message" id="message" [(ngModel)]="users.message" placeholder="What's on your mind?"></ion-textarea>
+                    <ion-textarea name="message" id="message" [(ngModel)]="users.message" placeholder="What's on your mind?" required></ion-textarea>
                 </ion-item>
                 <img *ngIf="url1" src="{{url1}}">
                 <ion-item>
@@ -24,7 +24,7 @@
                         </label>
                     </span>
                    
-                    <button ion-button icon-left  item-end small color="btncolor" class="postButton" type="submit">Post</button>
+                    <button ion-button icon-left  item-end small color="btncolor" [disabled]="!f.valid" class="postButton" type="submit">Post</button>
                 </ion-item>
             </form>
         </ion-list>
