@@ -65,18 +65,25 @@
             </ion-item>
         </ion-list>
     </ion-card>
-           <ion-list>
-           <form (ngSubmit)="OnComment(f)" #f="ngForm">
+</ion-content>
+<ion-footer>
+    <ion-toolbar position="bottom">
+        <form (ngSubmit)="OnComment(f)" #f="ngForm" class="row">
             <ion-item>
                 <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message"></ion-input>
+                
+                <button class="commentbtn" type="submit" item-end ion-button color="danger" icon-only>
+                    <ion-icon class="f35" name='send' is-active="false"></ion-icon>
+                </button>
+                
             </ion-item>
-            <ion-item>
-                 <button ion-button  type="submit" color="light" class="login-button">Comment</button>
+            <!-- <ion-item class="col-md-9">
+                <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message"></ion-input>
             </ion-item>
-            
-                 </form>
-        </ion-list>
+            <ion-item class="col-md-3">
+                <button ion-button type="submit" color="light" class="login-button">Comment</button>
+            </ion-item> -->
 
-    
-
-</ion-content>
+        </form>
+    </ion-toolbar>
+</ion-footer>

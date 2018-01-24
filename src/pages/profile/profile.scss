@@ -78,22 +78,7 @@ page-profile {
         padding-right: 5%;
         padding-left: 5%;
     }
-    .item-ios ion-avatar ion-img,
-    .item-ios ion-avatar img {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        display: block;
-        margin: 0 auto;
-    }
-    page-profile .item-ios ion-avatar ion-img,
-    page-profile .item-ios ion-avatar img {
-        border-radius: 50%;
-        width: 150px!important;
-        height: 150px!important;
-        display: block;
-        margin: 0 auto;
-    }
+   
     .list-ios[inset] {
         margin: 0px;
     }
@@ -138,5 +123,11 @@ page-profile {
     }
     .mt16{
         margin-top: 16px;
+    }
+    .profilePic img{
+        height: 150px;
+        width: 150px;
+        display: block;
+        margin: 0 auto;
     }
 }
