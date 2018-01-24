@@ -5,11 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar color="header">
-    <ion-title>post-approval</ion-title>
-  </ion-navbar>
-
+    <ion-navbar hideBackButton="true" color="header">
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Post-approval</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
@@ -18,28 +19,29 @@
     <ion-card *ngFor="let data of postData">
 
         <ion-item>
-            <ion-avatar item-start>
-                <span *ngIf="data.user">
-                    <img *ngIf="data.user.user_image" src="{{data.user.user_image}}">
-                    <img  *ngIf="!data.user.user_image" src="assets/imgs/man.png">
-                   </span>
+            <ion-avatar item-start *ngIf="data.user">
+                <img *ngIf="data.user.user_image" src="{{data.user.user_image}}">
+                <img *ngIf="!data.user.user_image" src="assets/imgs/man.png">
             </ion-avatar>
             <span *ngIf="data.user">
-            <h2 *ngIf="data.user.firstname">{{data.user.firstname}} &nbsp;{{data.user.lastname}}</h2>
-            <h2 *ngIf="!data.user.firstname">No User</h2>
-           </span>
+                <h2 *ngIf="data.user.firstname">{{data.user.firstname}} &nbsp;{{data.user.lastname}}</h2>
+                <h2 *ngIf="!data.user.firstname">No User</h2>
+            </span>
             <p>{{data.createdAt}}</p>
         </ion-item>
-
+        
         <img *ngIf="!data.imageUrl" src="assets/imgs/scenery.jpg">
         <img *ngIf="data.imageUrl" src="{{data.imageUrl}}">
-
 
         <ion-card-content>
             <p>{{data.message}}</p>
         </ion-card-content>
-        <button ion-button small class="postButton" (click)="approvedPost(data._id)">Post Approved</button>
 
+        <ion-row>
+            <ion-col>
+                <button ion-button small class="postButton" (click)="approvedPost(data._id)">Post Approved</button>
+            </ion-col>
+        </ion-row>
     </ion-card>
-
+   
 </ion-content>

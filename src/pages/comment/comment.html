@@ -72,18 +72,12 @@
             <ion-item>
                 <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message" required></ion-input>
                 
-                <button class="commentbtn" [disabled]="!f.valid" type="submit" item-end ion-button color="danger" icon-only>
-                    <ion-icon class="f35" name='send' is-active="false"></ion-icon>
+                <button class="commentbtn" [disabled]="!f.valid" type="submit" item-end ion-button color="btncolor" icon-only>
+                    <ion-icon class="f25" name='send' is-active="false"></ion-icon>
                 </button>
                 
             </ion-item>
-            <!-- <ion-item class="col-md-9">
-                <ion-input type="text" placeholder="comment" name="message" id="message" [(ngModel)]="post.message"></ion-input>
-            </ion-item>
-            <ion-item class="col-md-3">
-                <button ion-button type="submit" color="light" class="login-button">Comment</button>
-            </ion-item> -->
-
+            
         </form>
     </ion-toolbar>
 </ion-footer>
