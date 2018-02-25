@@ -61,7 +61,7 @@
         <ion-list>
             <ion-item *ngFor="let data of postData.comments" class="bb1">
                 <h2>{{data.message}}</h2>
-                <p>{{postData.createdAt | amTimeAgo}}</p>
+                <p>{{data.createdAt | amTimeAgo}}</p>
             </ion-item>
         </ion-list>
     </ion-card>

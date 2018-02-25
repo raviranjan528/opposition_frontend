@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Rx";
 import { ConstService } from "../../app/constService";
 
 @Injectable()
-export class HomeService {
+export class PostService {
 
     headers = new Headers();
   constructor(private http: Http,
@@ -37,14 +37,5 @@ export class HomeService {
     console.log(error);
     return Observable.throw(error.json());
   }
-
-  searchPostData(postData) {
-    console.log("postDaat :: " + postData)
-  return this.http.post(this.constService.url+'api/posts/search/by/user/post', postData, {
-    headers: this.headers
-  })
-    .map((data: Response) => data.json())
-    .catch(this.handleError);
-}
 
 }

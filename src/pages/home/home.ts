@@ -1,199 +1,168 @@
-import { Component } from '@angular/core';
-import {IonicPage, NavController, ToastController,NavParams, ViewController,ModalController,Platform, LoadingController, AlertController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, ToastController, NavParams, ViewController, ModalController, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { HomeService } from './home.service';
 import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 import { CommentPage } from '../comment/comment';
 import { RatingPage } from '../rating/rating';
+import { PostPage } from '../post/post';
+
+
 @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   providers: [HomeService]
 })
-export class HomePage {
-postData: any;
-username: any;
-url1: any;
-imageAvilable :any= 0;
-users: any = {}
-public uploader: CloudinaryUploader = new CloudinaryUploader(
-  new CloudinaryOptions({ cloudName: 'dniwyifho', uploadPreset: 'eff7binz' })
-);
+export class HomePage implements OnInit {
+  postData: any;
+  username: any;
+  search: any;
+  url1: any;
+  imageAvilable: any = 0;
+  autocompleteItems: any;
+  autocomplete: any;
+  acService: any;
+  placesService: any;
+  users: any = {}
+  public uploader: CloudinaryUploader = new CloudinaryUploader(
+    new CloudinaryOptions({ cloudName: 'dniwyifho', uploadPreset: 'eff7binz' })
+  );
   constructor(public navCtrl: NavController,
     public homeService: HomeService,
     private platform: Platform,
     public loadingController: LoadingController,
-    public alertCtrl: AlertController, 
+    public alertCtrl: AlertController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
     private toastCtrl: ToastController,
   ) {
-      this.OnGetMessage();
+    this.OnGetMessage();
+  }
+  ngOnInit() {
+    this.autocompleteItems = [];
+    this.autocomplete = {
+      query: ''
+    };
   }
 
-
-  OnGetMessage(){
+  OnGetMessage() {
     this.homeService.getPostData().subscribe(res => {
       console.log("this.postData :::" + JSON.stringify(res))
-        this.postData = res;
+      this.postData = res;
     })
   }
 
-  OnPostMessage(form: NgForm){
-       let loading = this.loadingController.create({
-            content: ' Posting, Please Wait...'
-        });
-           loading.present();
-           this.uploader.uploadAll();
-           this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
-            var cloudinaryImage = JSON.parse(response);
-            this.users.imageUrl = cloudinaryImage.secure_url;
-            this.users.publicId = cloudinaryImage.public_id;
-            this.homeService.postPostData(this.users)
-           .subscribe( (response) => { 
-             console.log('response' + JSON.stringify(response));
-           if(response.flag == 0){
-              let alert = this.alertCtrl.create({
-                          title: 'Post Failed',
-                          subTitle: 'Please Provide Your Name,DOB,Gender,Profile Image First!',
-                          buttons: [
-                              {
-                                text: 'OK',
-                                handler: () => {
-                                 this.navCtrl.push("ProfilePage")
-                                  loading.dismiss();
-                                }
-                              }
-                            ]
-                        });
-                        alert.present();
-           }
-           else{
-          this.OnGetMessage();
-               {
-                  let toast = this.toastCtrl.create({
-                      message: 'Post Successful!',
-                      duration: 3000,
-                      position: 'bottom'
-                  });
-
-                  toast.onDidDismiss(() => {
-                    console.log('Dismissed toast');
-                  });
-
-                  toast.present();
-              }
-              this.users.message = '';
-              loading.dismiss();
-            }
-        },
-             (error) => { 
-               loading.dismiss();
-                      let alert = this.alertCtrl.create({
-                          title: 'Post Failed',
-                          subTitle: 'Invalid Data!',
-                          buttons: ['OK']
-                        });
-                        alert.present();
-                    }
-      );
-    }
-    if(this.imageAvilable === 0){
-      console.log('this.users' + JSON.stringify(this.users));
-      this.homeService.postPostData(this.users)
-      .subscribe( (response) => { 
-        console.log('response' + JSON.stringify(response));
-       if(response.flag == 0){
-              let alert = this.alertCtrl.create({
-                          title: 'Post Failed',
-                          subTitle: 'Please Provide Your Name,DOB,Gender,Profile Image First!',
-                          buttons: [
-                              {
-                                text: 'OK',
-                                handler: () => {
-                                 this.navCtrl.push("ProfilePage");
-                                  loading.dismiss();
-                                }
-                              }
-                            ]
-                        });
-                        alert.present();
-           }
-           else{
-          this.OnGetMessage();
-               {
-                  let toast = this.toastCtrl.create({
-                      message: 'Post Successful!',
-                      duration: 3000,
-                      position: 'bottom'
-                  });
-
-                  toast.onDidDismiss(() => {
-                    console.log('Dismissed toast');
-                  });
-
-                  toast.present();
-              }
-              this.users.message = '';
-              loading.dismiss();
-            }
-   },
-        (error) => { 
-          loading.dismiss();
-                 let alert = this.alertCtrl.create({
-                     title: 'Post Failed',
-                     subTitle: 'Invalid Data!',
-                     buttons: ['OK']
-                   });
-                   alert.present();
-               }
- );
-}
-  }
-
-
-
-
-
-readUrl1(event) {
-
-  if (event.target.files && event.target.files[0]) {
-   var reader = new FileReader();
-   console.log("fack path before upload : "+this.url1);
- 
- reader.onload = (event:any) => {
-   this.url1 = event.target.result;
-   this.imageAvilable = 1;
-
-   console.log("fack path : "+this.url1);
-  }
-
- reader.readAsDataURL(event.target.files[0]);
- }
-
-
-}
-
-
- ratingPage(postId) {
-   let profileModal = this.modalCtrl.create(RatingPage, { postId: postId });
-   profileModal.onDidDismiss(data => {
+  ratingPage(postId) {
+    let profileModal = this.modalCtrl.create(RatingPage, { postId: postId });
+    profileModal.onDidDismiss(data => {
       this.OnGetMessage();
     })
-         profileModal.present();
- }
+    profileModal.present();
+  }
 
   commentPage(postId) {
-   let profileModal = this.modalCtrl.create(CommentPage, { postId: postId });
-   profileModal.onDidDismiss(data => {
+    let profileModal = this.modalCtrl.create(CommentPage, { postId: postId });
+    profileModal.onDidDismiss(data => {
       console.log(data);
       this.OnGetMessage();
-         
- })
-   profileModal.present();
- }
+
+    })
+    profileModal.present();
+  }
+
+
+  postPage() {
+    let postModal = this.modalCtrl.create(PostPage);
+    postModal.onDidDismiss(data => {
+      console.log(data);
+      this.OnGetMessage();
+
+    })
+    postModal.present();
+  }
+
+
+  // onSearch(event){
+  //   if(event.length > 0){
+  //     const data= {title:event}
+  //     this.homeService.searchPostData(data).subscribe(res => {
+  //       console.log("this.postData :::" + JSON.stringify(res))
+  //       this.postData = res;
+  //       if(res.length > 0){
+  //         this.postData = res;
+  //       }
+  //       else{
+  //         this.OnGetMessage()
+  //       }
+  //     })
+  //   }
+  // }
+
+  onInput(event) {
+    console.log('helllo' + event.target.value)
+    if (event.target.value.length > 0) {
+      const data = { title: event.target.value }
+      this.homeService.searchPostData(data).subscribe(res => {
+        console.log("this.postData :::" + JSON.stringify(res))
+        this.postData = res;
+        if (res.length > 0) {
+          this.postData = res;
+        }
+        else {
+
+        }
+      })
+    } else {
+      this.OnGetMessage()
+    }
+  }
+  onCancel(event) {
+    console.log('cancel' + event)
+  }
+
+  updateSearch(event) {
+    console.log('helllo' + JSON.stringify(event))
+    if (event.target.value == undefined) {
+      this.OnGetMessage();
+      this.autocompleteItems = [];
+    } else {
+      if (event.target.value.length > 0) {
+        const data = { title: event.target.value }
+        console.log('modal > updateSearch');
+        if (this.autocomplete.query == '') {
+          this.autocompleteItems = [];
+          return;
+        }
+        let self = this;
+        let config = {
+          //types:  ['geocode'], // other types available in the API: 'establishment', 'regions', and 'cities'
+          input: this.autocomplete.query,
+          componentRestrictions: {}
+        }
+        this.homeService.searchPostData(data).subscribe(res => {
+          console.log('modal > getPlacePredictions > status > ', res);
+          if (res.length > 0) {
+            self.autocompleteItems = [];
+            res.forEach(function (prediction) {
+              self.autocompleteItems.push(prediction);
+            });
+          }
+
+        });
+      }
+    }
+
+  }
+
+  chooseItem(event) {
+    console.log('event' + JSON.stringify(event))
+    this.users.address = event;
+    this.autocomplete.query = event.title;
+    this.postData = [];
+    this.postData.push(event)
+  }
 
 }
 

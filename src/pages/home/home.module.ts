@@ -6,11 +6,13 @@ import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { FileUploadModule } from 'ng2-file-upload';
 import { CommentPage } from '../comment/comment';
 import { RatingPage } from '../rating/rating';
+import { PostPage } from '../post/post';
 @NgModule({
   declarations: [
      HomePage,
      CommentPage,
-     RatingPage
+     RatingPage,
+     PostPage
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
@@ -20,7 +22,8 @@ import { RatingPage } from '../rating/rating';
   ],
   entryComponents:[
   CommentPage,
-  RatingPage
+  RatingPage,
+  PostPage
   ]
 })
 export class HomePageModule {}

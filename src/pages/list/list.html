@@ -9,8 +9,8 @@
 
 
 <ion-content>
-    <ion-list>
-        <ion-item *ngFor="let data of userList">
+    <ion-list *ngFor="let data of userList">
+        <ion-item *ngIf="data._id != userData._id">
             <ion-avatar item-start>
                 <img *ngIf="data.user_image" src="{{data.user_image}}">
                 <img *ngIf="!data.user_image" src="assets/imgs/man.png">

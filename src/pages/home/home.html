@@ -1,48 +1,59 @@
 <ion-header>
     <ion-navbar hideBackButton="true" color="header">
         <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <ion-title>Home</ion-title>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title style="display: inline-block; vertical-align: middle"><img src="assets/imgs/man.png" style="width: 30px; height: 30px;"></ion-title>
+        
+        
+        <!-- <ion-col>
+        <ion-textarea name="search" id="search" [(ngModel)]="search" (ngModelChange)="onSearch($event)" placeholder="search post here ?" required></ion-textarea>
+        </ion-col>
+        <ion-col>
+        <ion-icon name="search"></ion-icon>
+        </ion-col> -->
+        <!-- <ion-searchbar [(ngModel)]="search" [showCancelButton]="true" (ionInput)="onInput($event)"
+        (ionCancel)="onCancel($event)" style="display: inline-block; width: 82%"> 
+        </ion-searchbar>-->
+        <ion-item>
+            <ion-searchbar 
+            name="address" id="address" 
+            [(ngModel)]="autocomplete.query" 
+            [showCancelButton]="true" 
+            (ionInput)="updateSearch($event)" 
+            (ionCancel)="dismiss()"
+            style="display: inline-block; width: 82%"
+            placeholder="Start typing and select ...">
+            </ion-searchbar>
+            <ion-list>
+            <ion-item *ngFor="let item of autocompleteItems" 
+            (click)="chooseItem(item)">
+            {{ item.title }}
+            </ion-item>
+            </ion-list>
+     </ion-item>
+            
     </ion-navbar>
 </ion-header>
 
 
 <ion-content class="homeSection">
-    <ion-card>
-        <ion-list>
-            <form (ngSubmit)="OnPostMessage(f)" #f="ngForm">
-                <ion-item>
-                    <ion-textarea name="message" id="message" [(ngModel)]="users.message" placeholder="What's on your mind?" required></ion-textarea>
-                </ion-item>
-                <img *ngIf="url1" src="{{url1}}">
-                <ion-item>
-                    <span id="hide" item-left>
-                        <label class="hand-cursor">
-                            <input type="file" ng2FileSelect [uploader]="uploader" (change)="readUrl1($event)"/>
-                            <ion-icon name="camera" class="icon_size"></ion-icon>
-                        </label>
-                    </span>
-                   
-                    <button ion-button icon-left  item-end small color="btncolor" [disabled]="!f.valid" class="postButton" type="submit">Post</button>
-                </ion-item>
-            </form>
-        </ion-list>
-    </ion-card>
 
     <ion-card *ngFor="let data of postData">
 
         <ion-item>
-            <ion-avatar item-start *ngIf="data.user">
+            <!-- <ion-avatar item-start *ngIf="data.user">
                 <img *ngIf="data.user.user_image" src="{{data.user.user_image}}">
                 <img *ngIf="!data.user.user_image" src="assets/imgs/man.png">
-            </ion-avatar>
-            <h2 *ngIf="data.user.firstname">{{data.user.firstname}} &nbsp;{{data.user.lastname}}</h2>
+            </ion-avatar> -->
+            <h2>{{data.title}}</h2>
+            <h5 *ngIf="data.user.firstname">{{data.user.firstname}} &nbsp;{{data.user.lastname}}</h5>
             <h2 *ngIf="!data.user.firstname">No User</h2>
+            <h6>Posted By :- {{data.postedBy}}</h6>
             <p>{{data.createdAt | amTimeAgo}}</p>
         </ion-item>
 
-        <img *ngIf="!data.imageUrl" src="assets/imgs/scenery.jpg">
+        <!-- <img *ngIf="!data.imageUrl" src="assets/imgs/scenery.jpg"> -->
         <img *ngIf="data.imageUrl" src="{{data.imageUrl}}">
 
         <ion-card-content>
@@ -69,8 +80,12 @@
                 </button>
             </ion-col>
         </ion-row>
+      
 
     </ion-card> 
+    <ion-fab bottom right edge>
+            <button ion-fab (click)="postPage()"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
 
     
 </ion-content>

@@ -43,7 +43,7 @@ post = {
     })
    }
 
-    dismiss() {
+   dismiss() {
    this.viewCtrl.dismiss();
  }
 onRatingChange(event){
